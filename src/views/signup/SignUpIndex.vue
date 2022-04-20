@@ -102,18 +102,13 @@ import JoinRequest from "@/api/user/request/JoinRequest";
 const passwordConfirm = ref<string>("");
 const joinRequest = reactive<JoinRequest>(new JoinRequest("", "", "", ""));
 
-const { createUser } = useUserStore();
+const { join } = useUserStore();
 
-//TODO 상태코드에 따라 응답 성공 판별. alert 창 띄우거나 리다이렉트
-function join(joinRequest: JoinRequest) {
-  createUser(joinRequest)
-    .then();
-}
 
 // TODO 이메일 중복 체크 로직 필요
 
-// TODO 비밀번호 검증 로직 필요
 
+// TODO 비밀번호 검증 로직 필요
 </script>
 <style scoped>
 a {
