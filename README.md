@@ -1,2 +1,2 @@
 # shall-we-code-front
-쉘위코드 프론트 입니다.
+shall we code front 프로젝트입니다.
