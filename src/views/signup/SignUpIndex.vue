@@ -15,6 +15,7 @@
             <v-col cols="12">
               <v-text-field
                 v-model="joinRequest.email"
+                :rules="rules.emailRule"
                 hide-details
                 hint="로그인할 때와 비밀번호를 재설정해야 할 때 사용하는 정보입니다."
                 label="이메일"
@@ -42,6 +43,7 @@
             <v-col class="ma-0" cols="12">
               <v-text-field
                 v-model="joinRequest.phoneNumber"
+                :rules="rules.phoneNumberRule"
                 hide-details
                 hint="연락처를 알려주세요."
                 label="연락처"
@@ -56,6 +58,7 @@
             <v-col cols="12">
               <v-text-field
                 v-model="joinRequest.password"
+                :rules="rules.passwordRule"
                 hide-details
                 hint="숫자 영문 등을 조합한 여덟자리 이상의 비밀번호를 입력하세요."
                 label="비밀번호"
@@ -70,6 +73,7 @@
             <v-col cols="12">
               <v-text-field
                 v-model="passwordConfirm"
+                :rules="rules.passwordConfirmRule"
                 hide-details
                 hint="숫자 영문 등을 조합한 여덟자리 이상의 비밀번호를 입력하세요."
                 label="비밀번호 확인"
@@ -87,7 +91,7 @@
       </div>
 
       <div class="info_msg">
-        <a href="/"> 이미 계정이 있으신가요?</a>
+        <a href="/login"> 이미 계정이 있으신가요?</a>
       </div>
     </main>
   </div>
@@ -101,6 +105,13 @@ import JoinRequest from "@/api/user/request/JoinRequest";
 
 const passwordConfirm = ref<string>("");
 const joinRequest = reactive<JoinRequest>(new JoinRequest("", "", "", ""));
+const rules = reactive({
+  emailRule: [v => v.match(/^[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*.[a-zA-Z]{2,3}$/i)   || '유효하지 않은 이메일 주소입니다'],
+  phoneNumberRule: [],
+  passwordRule: [],
+  passwordConfirmRule: []
+})
+
 
 const { createUser } = useUserStore();
 
