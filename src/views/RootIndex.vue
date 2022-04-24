@@ -25,14 +25,11 @@
       </section>
     </main>
 
-    <!--   <nuxt-link to="login">로그인</nuxt-link>-->
-    <!--   <nuxt-link to="signup">회원가입</nuxt-link>-->
   </div>
 </template>
 
 <script setup>
-import Button from "../components/common/GlobalButton.vue";
-</script>
+import Button from "../components/common/GlobalButton.vue";</script>
 
 <style lang="scss" scoped>
 .index_wrap {

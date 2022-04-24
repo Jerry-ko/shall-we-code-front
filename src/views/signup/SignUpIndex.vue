@@ -14,20 +14,22 @@
           <v-row>
             <v-col cols="12">
               <v-text-field
-                v-model="joinRequest.email"
+                v-model="joinForm.email"
                 hide-details
                 hint="로그인할 때와 비밀번호를 재설정해야 할 때 사용하는 정보입니다."
                 label="이메일"
                 single-line
                 solo
+                @input="event => emailCheck(event.target.value)"
               ></v-text-field>
             </v-col>
           </v-row>
+          <p v-show="showEmailMessage">중복된 이메일입니다.</p>
 
           <v-row>
             <v-col class="ma-0" cols="12">
               <v-text-field
-                v-model="joinRequest.name"
+                v-model="joinForm.name"
                 hide-details
                 hint="이름이 무엇인가요?"
                 label="이름"
@@ -41,7 +43,7 @@
           <v-row>
             <v-col class="ma-0" cols="12">
               <v-text-field
-                v-model="joinRequest.phoneNumber"
+                v-model="joinForm.phoneNumber"
                 hide-details
                 hint="연락처를 알려주세요."
                 label="연락처"
@@ -55,7 +57,7 @@
           <v-row>
             <v-col cols="12">
               <v-text-field
-                v-model="joinRequest.password"
+                v-model="joinForm.password"
                 hide-details
                 hint="숫자 영문 등을 조합한 여덟자리 이상의 비밀번호를 입력하세요."
                 label="비밀번호"
@@ -83,7 +85,7 @@
       </v-form>
 
       <div class="btn_wrap">
-        <Btn @click="join(joinRequest)">가입하기</Btn>
+        <Btn @click="join(joinForm)">가입하기</Btn>
       </div>
 
       <div class="info_msg">
@@ -95,20 +97,16 @@
 
 <script lang="ts" setup>
 import Btn from "../../components/common/GlobalButton.vue";
-import { useUserStore } from "@/stores/user";
-import { reactive, ref } from "vue";
-import JoinRequest from "@/api/user/request/JoinRequest";
+import {useUserStore} from "@/stores/UserStore";
+import {reactive, ref} from "vue";
+import {JoinRequest} from "@/api/user/request/JoinRequests";
 
+const showEmailMessage = ref<boolean>(false)
 const passwordConfirm = ref<string>("");
-const joinRequest = reactive<JoinRequest>(new JoinRequest("", "", "", ""));
-
-const { join } = useUserStore();
-
-
-// TODO 이메일 중복 체크 로직 필요
+const joinForm = reactive<JoinRequest>(new JoinRequest("", "", "", ""));
+const { join, emailCheck } = useUserStore();
 
 
-// TODO 비밀번호 검증 로직 필요
 </script>
 <style scoped>
 a {

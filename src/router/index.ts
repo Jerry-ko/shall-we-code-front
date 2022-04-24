@@ -10,7 +10,9 @@ const router = createRouter({
       path: "/",
       name: "index",
       component: () => import("@/views/RootIndex.vue"),
-      children: [],
+      children: [
+
+      ],
     },
     /**
      * 회원가입 인덱스 페이지

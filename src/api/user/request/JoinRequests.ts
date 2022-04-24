@@ -1,4 +1,4 @@
-export default class JoinRequest {
+export class JoinRequest {
   email: string;
   name: string;
   nickname?: string;
@@ -26,3 +26,12 @@ export default class JoinRequest {
     this.blogUrl = blogUrl;
   }
 }
+
+export class EmailCheckRequest {
+  email: string
+
+  constructor(email: string) {
+    this.email = email;
+  }
+}
+
