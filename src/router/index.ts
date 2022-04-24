@@ -8,11 +8,19 @@ const router = createRouter({
      */
     {
       path: "/",
-      name: "index",
+      name: "rootIndex",
+      // component: () => import("@/layouts/TheLayout.vue"),
       component: () => import("@/views/RootIndex.vue"),
-      children: [
-
-      ],
+      children: [],
+    },
+    /**
+     * 로그인 인덱스 페이지
+     */
+    {
+      path: "/login",
+      name: "loginIndex",
+      meta: { useHeader: false },
+      component: () => import("@/views/login/LoginIndex.vue")
     },
     /**
      * 회원가입 인덱스 페이지
@@ -20,6 +28,7 @@ const router = createRouter({
     {
       path: "/signup",
       name: "signupIndex",
+      meta: { useHeader: false },
       component: () => import("@/views/signup/SignUpIndex.vue"),
     },
   ],
