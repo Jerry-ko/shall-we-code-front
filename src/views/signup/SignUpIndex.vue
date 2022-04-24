@@ -111,7 +111,7 @@ const joinForm = reactive<JoinRequest>(new JoinRequest("", "", "", ""));
 const { join, emailCheck } = useUserStore();
 
 const rules = reactive({
-  emailRule: [v => v.match(/^[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*.[a-zA-Z]{2,3}$/i)   || '유효하지 않은 이메일 주소입니다'],
+  // emailRule: [v => v.match(/^[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*.[a-zA-Z]{2,3}$/i)   || '유효하지 않은 이메일 주소입니다'],
   phoneNumberRule: [],
   passwordRule: [],
   passwordConfirmRule: []
