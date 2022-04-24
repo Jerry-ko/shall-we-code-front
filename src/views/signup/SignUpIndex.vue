@@ -7,7 +7,6 @@
     <main class="sign_up_form">
       <div class="tit_wrap">
         <h1>새 계정 만들기</h1>
-        <p>빠르고 쉽습니다.</p>
       </div>
       <v-form>
         <v-container>
@@ -25,7 +24,7 @@
               ></v-text-field>
             </v-col>
           </v-row>
-          <p v-show="showEmailMessage">중복된 이메일입니다.</p>
+          <p v-show="duplicated">중복된 이메일입니다.</p>
 
           <v-row>
             <v-col class="ma-0" cols="12">
@@ -108,7 +107,7 @@ import {JoinRequest} from "@/api/user/request/JoinRequests";
 const showEmailMessage = ref<boolean>(false)
 const passwordConfirm = ref<string>("");
 const joinForm = reactive<JoinRequest>(new JoinRequest("", "", "", ""));
-const { join, emailCheck } = useUserStore();
+const { join, emailCheck, duplicated } = useUserStore();
 
 const rules = reactive({
   // emailRule: [v => v.match(/^[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*.[a-zA-Z]{2,3}$/i)   || '유효하지 않은 이메일 주소입니다'],
