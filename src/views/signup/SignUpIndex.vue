@@ -11,16 +11,21 @@
       <v-form>
         <v-container>
           <v-row>
-            <v-col cols="12">
+            <v-col cols="8">
               <v-text-field
                   v-model="joinForm.email"
+                  :color="emailChecker ? 'success' : 'warning'"
                   hide-details
                   hint="로그인할 때와 비밀번호를 재설정해야 할 때 사용하는 정보입니다."
                   label="이메일"
                   single-line
                   solo
-                  @input="event => validateEmail(event.target.value)"
               ></v-text-field>
+            </v-col>
+            <!--                  @input="event => validateEmail(event.target.value)"-->
+
+            <v-col cols="4">
+              <v-btn @click="validateEmail">중복확인</v-btn>
             </v-col>
           </v-row>
           <p v-show="duplicated">중복된 이메일입니다.</p>
@@ -109,7 +114,7 @@ import {useRouter} from "vue-router";
 
 const passwordConfirm = ref<string>("");
 const joinForm = reactive<JoinRequest>({password: "", email: "", name: "", phoneNumber: ""});
-const duplicated = ref<boolean>(false)
+const emailChecker = ref<boolean>(false)
 const passwordChecker = ref<boolean>(false)
 const passwordConfirmChecker = ref<boolean>(false)
 
@@ -129,13 +134,17 @@ const join = async (joinRequest: JoinRequest) => {
  * 이메일 중복체크
  * @param email 사용자가 입력한 이메일
  */
-const validateEmail = async (email: string) => {
+const validateEmail = async () => {
+  const email = joinForm.email
   if (isValidEmail({email})) {
     try {
-      duplicated.value = await checkDuplicateEmail(email)
+      const duplicated = await checkDuplicateEmail(email)
+      emailChecker.value = !duplicated
     } catch (err) {
       console.log(`이메일 중복 검시 중 에러 발생 : ${err}`)
     }
+  } else {
+    return false
   }
 }
 
