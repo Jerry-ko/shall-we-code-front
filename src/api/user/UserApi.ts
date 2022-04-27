@@ -8,11 +8,11 @@ const SHALL_WE_CODE_URL = import.meta.env.VITE_SHALL_WE_CODE;
 
 
 const USER_API = {
-  join: (joinRequest: JoinRequest) => {
+  createUser: (joinRequest: JoinRequest) => {
     return axios.post<HttpResponse<JoinResponse>, AxiosResponse<HttpResponse<JoinResponse>>>(`${SHALL_WE_CODE_URL}/user/join`, joinRequest);
   },
 
-  emailCheck: (request: EmailCheckRequest) => {
+  emailDuplicateCheck: (request: EmailCheckRequest) => {
     return axios.post<HttpResponse<EmailCheckResponse>, AxiosResponse<HttpResponse<EmailCheckResponse>>>(`${SHALL_WE_CODE_URL}/user/join/duplicate-check`, request)
   }
 };

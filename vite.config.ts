@@ -1,4 +1,4 @@
-import { defineConfig } from 'vite'
+import {defineConfig} from 'vite'
 import vue from '@vitejs/plugin-vue'
 import vuetify from '@vuetify/vite-plugin'
 
@@ -13,7 +13,13 @@ export default defineConfig({
       autoImport: true,
     }),
   ],
-  define: { 'process.env': {} },
+  // TODO HMR 동작하는지 테스트 필요
+  server: {
+    watch: {
+      usePolling: true
+    }
+  },
+  define: {'process.env': {}},
   resolve: {
     alias: {
       '@': path.resolve(__dirname, 'src'),
